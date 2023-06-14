@@ -1,7 +1,6 @@
 package com.chattop.api.service;
 
 import com.chattop.api.entity.Message;
-import com.chattop.api.entity.Rental;
 import com.chattop.api.repository.MessageRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;

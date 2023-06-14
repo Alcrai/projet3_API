@@ -42,6 +42,12 @@ class MessageServiceTest {
     }
 
     @Test
+    void create(){
+        Message message2 = new Message(0,1,1,"Dispo le 20 juin pour louer?", Timestamp.valueOf(LocalDateTime.now()),Timestamp.valueOf(LocalDateTime.now()));
+        assertThat(messageService.create(message2).getRental_id()).isEqualTo(message2.getRental_id());
+    }
+
+    @Test
     void findById() {
         when(messageRepository.findById(any(Integer.class))).thenReturn(Optional.of(message));
         assertThat(messageService.findById(1)).isEqualTo(message);

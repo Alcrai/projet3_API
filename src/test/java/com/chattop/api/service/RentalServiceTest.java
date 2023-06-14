@@ -33,6 +33,24 @@ class RentalServiceTest {
     }
 
     @Test
+    void createIfExistsById_isOk(){
+        when(rentalRepository.existsById(any(Integer.class))).thenReturn(true);
+        when(rentalRepository.findById(any(Integer.class))).thenReturn(Optional.of(rental));
+        Rental rentalTest = rentalService.create(1,"testeur1",200f,500,"http://picture","blablabla",2);
+        assertThat(rentalTest.getId()).isEqualTo(1);
+        verify(rentalRepository, times(3)).findById(any(Integer.class));
+        verify(rentalRepository).existsById(any(Integer.class));
+    }
+
+    @Test
+    void createIfExistsById_isNotOk(){
+        when(rentalRepository.existsById(any(Integer.class))).thenReturn(false);
+        Rental rentalTest = rentalService.create(0,"testeur1",200f,500,"http://picture","blablabla",2);
+        assertThat(rentalTest.getName()).isEqualTo("testeur1");
+        verify(rentalRepository).existsById(any(Integer.class));
+    }
+
+    @Test
     void findAll() {
         List<Rental> rentals =  new ArrayList<>();
         rentals.add(rental);
@@ -57,12 +75,22 @@ class RentalServiceTest {
     }
 
     @Test
-    void update() {
+    void updateIfExist_isOk() {
         Rental rental2 = new Rental(1,"Villa du cap", 150.5f,800,"url picture","test",1,Timestamp.valueOf(LocalDateTime.now()),Timestamp.valueOf(LocalDateTime.now()));
         when(rentalRepository.existsById(any(Integer.class))).thenReturn(true);
         when(rentalRepository.save(any(Rental.class))).thenReturn(rental2);
         assertThat(rentalService.update(rental2).getPrice()).isEqualTo(rental2.getPrice());
+        verify(rentalRepository).existsById(any(Integer.class));
         verify(rentalRepository).save(any(Rental.class));
+    }
+
+    @Test
+    void NoupdateIfExist_isNotOk() {
+        Rental rental2 = new Rental(0,"Villa du cap", 150.5f,800,"url picture","test",1,Timestamp.valueOf(LocalDateTime.now()),Timestamp.valueOf(LocalDateTime.now()));
+        when(rentalRepository.existsById(any(Integer.class))).thenReturn(false);
+        assertThat(rentalService.update(rental2)).isEqualTo(null);
+        verify(rentalRepository).existsById(any(Integer.class));
+        verify(rentalRepository,times(0)).save(any(Rental.class));
     }
 
     @Test

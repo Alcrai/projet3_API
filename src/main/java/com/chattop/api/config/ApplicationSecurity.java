@@ -68,9 +68,10 @@ public class ApplicationSecurity {
                         .antMatchers("/api/auth/login",
                                 "/api/auth/register",
                                 "/api/uploads/*",
+                                "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/swagger-resources/**",
-                                "/v2/api-docs/**").permitAll()
+                                "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults());
