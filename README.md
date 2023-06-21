@@ -1,7 +1,7 @@
 ﻿# projet3_API
  # Estate
 
-This project is do with spring boot 2.7.12, the security is with token JWT.
+This project is do with Maven spring boot 2.7.12, the security is with token JWT.
 The database is with mysql.
 
 ## Start the project
@@ -14,51 +14,26 @@ Go inside folder:
 
 > cd projet3_API/
 
-Install dependencies:
+Install :
 
-> npm install
+> mvn clean install
 
-Launch Front-end:
+Launch Back-end:
 
-> npm run start;
+launch target/api-0.0.1-SNAPCHOT.jar
 
+Port API : 3001
 
 ## Ressources
 
-### Mockoon env
+### Swagger
 
-Download Mockoon here: https://mockoon.com/download/
-
-After installing you could load the environement
-
-> ressources/mockoon/rental-oc.json
-
-directly inside Mockoon 
-
-> File > Open environmement
-
-For launching the Mockoon server click on play bouton
-
-Mockoon documentation: https://mockoon.com/docs/latest/about/
-
-### Postman collection
-
-For Postman import the collection
-
-> ressources/postman/rental.postman_collection.json 
-
-by following the documentation: 
-
-https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman
-
+For documentation of API, you can see : 
+[http://localhost:3001/swagger-ui.html](http://localhost:3001/swagger-ui/index.html)
 
 ### MySQL
 
-SQL script for creating the schema is available `ressources/sql/script.sql`
+In application.properties you must change this with your configuration:
+spring.datasource.username=root
+spring.datasource.password=password
 
- This project was do with spring boot and security is with JWT.
- BD:mysql.
- 
-Adresse de l'Api: localhost:3001
-
-Documentation : http://localhost:3001/swagger-ui/index.html
