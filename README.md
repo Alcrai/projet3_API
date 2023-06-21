@@ -8,7 +8,7 @@ The database is with mysql.
 
 Git clone:
 
-> [git clone https://github.com/OpenClassrooms-Student-Center/P3-Full-Stack-portail-locataire](https://github.com/Alcrai/projet3_API.git)
+>[(https://github.com/Alcrai/projet3_API.git)](https://github.com/Alcrai/projet3_API.git)
 
 Go inside folder:
 
